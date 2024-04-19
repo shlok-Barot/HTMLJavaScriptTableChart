@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Bar Chart</title>
+    <!-- import plugin script -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+</head>
+
+<body>
+    <!-- Bar chart canvas element -->
+    <div>
+        <h4>Month wise Analysis</h4>
+        <canvas id="income" width="900" height="400"></canvas>
+    </div>
+    <script>
+        // Bar chart code start
+        var barData = {
+            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+            datasets: [
+                {
+                    fillColor: "#78fa94",
+                    strokeColor: "#78fa94",
+                    data: [40, 45, 55, 25, 20, 35, 30, 50, 45, 40, 55, 35]
+                },
+                {
+                    fillColor: "#78a8fa",
+                    strokeColor: "#78a8fa",
+                    data: [35, 42, 50, 35, 30, 45, 30, 45, 55, 50, 45, 35]
+                }
+            ]
+        }
+        // get bar chart canvas
+        var income = document.getElementById("income").getContext("2d");
+        // draw bar chart
+        new Chart(income).Bar(barData);
+        // Bar chart code end
+    </script>
+</body>
+
+</html>

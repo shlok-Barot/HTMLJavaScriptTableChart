@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insecure Direct Object References</title>
+</head>
+<body>
+  <h1>User Profile</h1>
+  
+  <!-- Simulated IDOR vulnerability -->
+  <div id="profileData">
+    <h2>User Information</h2>
+    <p>Username: <span id="username">JohnDoe</span></p>
+    <p>Email: <span id="email">johndoe@example.com</span></p>
+    <p>Address: <span id="address">123 Main St</span></p>
+  </div>
+  
+  <!-- Simulated authentication -->
+  <script>
+    // Simulated authentication token
+    var authToken = "fake-auth-token";
+    
+    // Check if the user is authenticated
+    if (authToken) {
+      // If authenticated, display the user's profile data
+      document.getElementById("profileData").style.display = "block";
+    } else {
+      // If not authenticated, redirect to the login page
+      window.location.href = "/login.html";
+    }
+  </script>
+</body>
+</html>
